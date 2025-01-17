@@ -63,8 +63,6 @@ export async function generateMetadata({ params }) {
 }
 
 export default function BlogPage({ params }) {
-    console.log('Estoy antes del console.log');
-    console.log("Parametro es: ",params);
     const blog = allBlogs.find(
         (blog) => blog._raw.flattenedPath === params.slug
     );
