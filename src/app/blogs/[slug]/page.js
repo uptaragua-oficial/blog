@@ -83,7 +83,7 @@ export default function BlogPage({ params }) {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
-        headline: blog.title,
+        headline: blog?.title,
         description: blog.description,
         image: imageList,
         datePublished: new Date(blog.publishedAt).toISOString,

@@ -1,0 +1,118 @@
+---
+title: "Visión general de la cinemática de los robots industriales, la virtualización y la aplicación de los algoritmos de Denavit-Hartenberg en su programación, automatización y control"
+description: "Visión general de la cinemática de los robots industriales, la virtualización y la aplicación de los algoritmos de Denavit-Hartenberg en la programación, automatización y control de los mismos."
+image: "../../public/blogs/robot1.jpg"
+publishedAt: "2025-02-21"
+updatedAt: "2025-02-21"
+author: "Marcos Mora"
+isPublished: true
+tags:
+    - Robótica Algoritmos_Denavit_Hartenberg
+---
+
+### Introducción
+
+El término robot fue utilizado por primera vez por el escritor checo Karel Capek en el año 1921 en su obra _Rossum's Universal Robot (R.U.R.)_ en la ciudad de Praga. Su origen es la palabra eslava _robota_, que se refiere al trabajo realizado de manera forzada.
+Pero sin duda alguna, fue el escritor americano de origen ruso Isaac Asimov (1920-1992) el máximo impulsor de la palabra robot. En octubre de 1945 publicó en la revista _Galaxy Science Fiction_ una historia en la que por primera vez enunció sus tres leyes de la robótica:
+
+* Un robot no puede causar daño a un ser humano, ni con su inacción permitir que un ser humano sufra daño.
+* Un robot debe obedecer las órdenes recibidas de un ser humano, excepto si tales órdenes entran en conflicto con la primera ley.
+* Un robot debe proteger su propia existencia y su integridad física, a menos que tal protección no entre en conflicto con la primera o segunda ley.
+
+### Relevancia de la cinemática en la robótica industrial y cómo los algoritmos de Denavit-Hartenberg facilitan el análisis y diseño de robots.
+Por otra parte, la virtualización de los modelos mecánicos permite simular el comportamiento del robot en un entorno virtual, lo cual es útil para el diseño y pruebas sin necesidad de un prototipo físico y facilita el proceso de entrenamiento para el personal que debe programar y manipular estos equipos.
+
+<Image
+    src="/blogs/20/robot2.jpg"
+    width="513"
+    height="289"
+    alt="Image"
+    sizes="100vw"
+/>
+
+Los algoritmos de Denavit-Hartenberg (D-H) son un estándar que se utilizan para modelado de la cinemática de los robots. Este método simplifica el análisis y el diseño cinemático de los robots al proporcionar un conjunto uniforme de parámetros que describen las relaciones geométricas entre los eslabones del robot. Estos modelos y sus parámetros se convierten, por lo general, en la identificación particular de cada equipo robótico, siendo estos intransferibles de un modelo a otro.
+
+<Image
+    src="/blogs/20/robot3.jpg"
+    width="513"
+    height="289"
+    alt="Image"
+    sizes="100vw"
+/>
+
+### Cinemática de los Robots Industriales
+En la programación, automatización y control de los equipos industriales o robots industriales la cinemática juega un papel fundamental, ya que permite calcular la posición y orientación de cada parte o elemento móvil del robot, lo cual es crucial para tareas que requieren alta precisión. Esta tarea facilita la creación de rutas óptimas para que el robot se mueva entre los puntos establecidos minimizando o eliminando los riesgos de colisiones y asegurando la precisión en el trabajo a realizar, minimizando el tiempo y el desgaste.
+
+La cinemática de los robots industriales es una rama de la robótica que se ocupa del estudio del movimiento de los robots y cómo interactúan cada uno de sus órganos o elementos móviles. En otras palabras, la cinemática analiza cómo se mueven las partes de un robot, específicamente las articulaciones, para alcanzar una posición o trayectoria deseada. Por lo general estos análisis son operaciones geométricas que definen la posición del punto origen o base del manipulador respecto al extremo abierto o móvil.
+
+En el análisis de los sistemas robóticos este estudio geométrico se divide en cinemática directa y cinemática inversa, siendo su principal diferencia la dirección en la que realiza el estudio. En la cinemática directa se calcula la posición del elemento final del brazo robótico a partir de los parámetros geométricos del equipo (dimensiones de los eslabones y posición de las articulaciones), mientras que en la cinemática inversa se calcula la configuración que debe tener cada articulación para obtener una posición definida del elemento final del brazo manipulador.
+
+### Tipos de articulaciones para robots industriales
+Los equipos industriales utilizados para manipular materiales pesados o peligrosos se componen esencialmente de eslabones enlazados por elementos móviles denominados articulaciones. Por lo general cada equipo se diseña en función del tipo de movimiento y el alcance de este.
+
+<Image
+    src="/blogs/20/robot4.png"
+    width="513"
+    height="289"
+    alt="Image"
+    sizes="100vw"
+/>
+
+Existen seis (6) articulaciones fundamentales utilizadas en los robots industriales, y en general en todos los sistemas de transmisión de movimiento mecánicos:
+
+* La articulación de tipo esférica, la cual permite obtener movimiento de rotación simultánea alrededor de los tres ejes de los sistemas de coordenadas (tres grados de movilidad).
+* Las articulaciones planares que permiten el movimiento lineal a lo largo de dos ejes (dos grados de libertad).
+* La articulación de tornillo que convierte movimiento rotacional en movimiento lineal (un grado de libertad).
+* La articulación prismática que solo permite movimiento a lo largo de un eje del sistema de coordenadas (un grado de movilidad).
+* Articulación de rotación, la cual permite rotación alrededor de un solo eje, por lo general el eje “Z” (un grado de movilidad).
+* La articulación cilíndrica que permite obtener un movimiento de rotación y un movimiento lineal al mismo tiempo (dos grados de movilidad).
+
+Hay que destacar, en este punto, que en la mayoría de los sistemas mecánicos, solo se usan las articulaciones con un solo grado de movilidad, o sea, la Prismática, la de Rotación y la de Tornillo; esto se debe a que su automatización y programación suele ser más simple.
+
+### Modelos matemáticos: algoritmos de Denavit-Hartenberg y su importancia en la cinemática de robots
+Desarrollados en 1955 por Jacques Denavit y Richard S. Hartenberg, estos algoritmos proporcionan un método sistemático para representar la posición y orientación de los eslabones de un robot en un espacio tridimensional. Su importancia radica en su capacidad para simplificar el modelado matemático de robots, facilitando el diseño, simulación y control de sistemas robóticos complejos. Los algoritmos de Denavit-Hartenberg son una serie de procedimientos que permiten simplificar el análisis cinemático de los robots industriales. Estos se encuentran basados esencialmente en las denominadas matrices de transformación lineal y matrices de transformación rotacional. Durante el análisis de un equipo se numeran las articulaciones y sus eslabones y se identifican en articulaciones de rotación o prismática, a partir de estos se obtienen expresiones que permiten calcular la posición que alcanzará el elemento final en función de los cambios que se suceden en las articulaciones.
+
+Los parámetros de Denavit-Hartenberg se basan en la asignación de sistemas de coordenadas a cada articulación de un robot. Para cada eslabón, se definen cuatro parámetros:
+
+* θ (theta): Ángulo de rotación alrededor del eje Z. El ángulo alrededor del eje X que lleva el eje Z al eje Z del siguiente eslabón.
+* d: Distancia a lo largo del eje Z. La distancia a lo largo del eje Z entre los ejes X de dos eslabones consecutivos.
+* a: Distancia a lo largo del eje X. La distancia a lo largo del eje X entre los ejes Z de dos eslabones consecutivos.
+* α (alpha): Ángulo de rotación alrededor del eje X. El ángulo alrededor del eje Z que lleva el eje X al eje X del siguiente eslabón.
+
+### Parámetros de Denavit-Hartenberg: Explicación de los cuatro parámetros (theta, d, a, alpha) y cómo se utilizan para definir la configuración de un robot
+
+<Image
+    src="/blogs/20/robot5.jpg"
+    width="513"
+    height="289"
+    alt="Image"
+    sizes="100vw"
+/>
+
+### Aplicación Práctica
+A continuación, se presenta un ejemplo en el que se ha modelado el algoritmo de DH en Matlab para obtener la matriz de transferencia para un robot de cuatro (4) grados de libertad:
+
+<Image
+    src="/blogs/20/robot6.jpg"
+    width="513"
+    height="289"
+    alt="Image"
+    sizes="100vw"
+/>
+
+Los parámetros DH se utilizan en diversas aplicaciones de la robótica moderna, como:
+
+* Diseño y análisis de manipuladores robóticos: Facilitan la creación y optimización de robots industriales y de servicio.
+* Cinemática directa e inversa: Ayudan a calcular la posición y orientación del efector final del robot a partir de los valores de las articulaciones y viceversa.
+* Automatización industrial: Mejoran la precisión y eficiencia de los robots en tareas repetitivas y complejas.
+
+### Conclusión
+Los algoritmos de Denavit-Hartenberg son una piedra angular en el modelado y control de robots. Su aplicación en la robótica moderna permite diseñar sistemas más precisos y eficientes, mientras que herramientas como MATLAB facilitan su implementación y simulación. A medida que la robótica sigue avanzando, los parámetros de D-H seguirán siendo esenciales para el desarrollo de tecnologías innovadoras en campos como la industria, la medicina y la exploración espacial.
+
+---
+
+¿Tienes preguntas o quieres más información? Puedes encontrarnos en:
+
+- [Nuestro Grupo de Telegram](https://t.me)
+- [Twitter: @UPTAragua](https://twitter.com/UPTAragua)
+
